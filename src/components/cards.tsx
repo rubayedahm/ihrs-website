@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, CalendarDays, MapPin } from "lucide-react";
-import type { EventItem, JournalMeta, Person } from "@/content/data";
-import { journalImages } from "@/content/data";
+import type { EventItem, JournalMeta, Person } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 
 export function EventCard({ event, priority = false }: { event: EventItem; priority?: boolean }) {
@@ -45,7 +44,7 @@ export function EventCard({ event, priority = false }: { event: EventItem; prior
 }
 
 export function JournalCard({ post, large = false }: { post: JournalMeta; large?: boolean }) {
-  const img = journalImages[post.slug];
+  const img = post.image;
   return (
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-navy-900/8 transition hover:shadow-xl hover:shadow-navy-900/10 ${

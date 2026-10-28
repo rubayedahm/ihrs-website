@@ -11,23 +11,36 @@ npm run dev        # http://localhost:3000
 npm run build      # static site written to ./out
 ```
 
-## Editing content
+## Editing content (CMS)
 
-| What | Where |
+Content is managed with **[Pages CMS](https://pagescms.org)**, a free dashboard that edits the files in this repo.
+
+1. Go to **https://app.pagescms.org** and sign in with GitHub.
+2. Install the Pages CMS GitHub app when asked and give it access to `ihrs-website`.
+3. Open the repository. You'll see: **Events, Journal (blog), Leadership team, Gallery photos, About page, Site settings**.
+4. Edit and click **Save**. Each save commits to `main` and the site redeploys in ~2 minutes.
+
+To give a committee member access, add them as a collaborator on the GitHub repo
+(*Settings → Collaborators*) or invite them by email from Pages CMS.
+
+| Dashboard section | File(s) |
 | --- | --- |
-| Email, phone, location, social links, donate link, charity no. | `src/lib/site.ts` |
-| Story, values, team, events, structure, departments | `src/content/data.ts` |
-| Journal articles | `src/content/journal/<slug>.html` + `index.json` |
-| Images | `public/images/…` (team headshots: add `photo` to a person in `data.ts`) |
-| Brand colours & fonts | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
+| Events | `content/events/*.json` |
+| Journal | `content/journal/*.md` (front matter + HTML body) |
+| Leadership team | `content/team.json` |
+| Gallery photos | `content/gallery.json` (event photos are included automatically) |
+| About page story | `content/about.json` |
+| Site settings (email, links, socials, donate) | `content/settings.json` |
+| Uploaded images | `public/images/…` |
 
-**Add an event:** drop the image in `public/images/events/` and add an entry to `events` in `data.ts`.
-**Add an article:** add `src/content/journal/my-article.html` and an entry in `index.json` (`slug`, `title`, `date`, `excerpt`).
+Values, IHRS structure and departments rarely change and live in `src/content/data.ts`.
+Brand colours and fonts are in `src/app/globals.css` (`@theme`) and `src/app/layout.tsx`.
 
 ## Contact form
 
-Create a free form at [Formspree](https://formspree.io) (or Basin/Getform) and set
-`NEXT_PUBLIC_FORM_ENDPOINT` in your host's environment variables. Without it the form opens the visitor's email app.
+Create a free form at [Formspree](https://formspree.io) (or Basin/Getform). On GitHub Pages, add its URL as a
+repository variable named `FORM_ENDPOINT` (*Settings → Secrets and variables → Actions → Variables*).
+Elsewhere, set `NEXT_PUBLIC_FORM_ENDPOINT`. Without it the form opens the visitor's email app.
 
 ## Deploy & domain
 

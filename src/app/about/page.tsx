@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { leadership, story, values } from "@/content/data";
+import { values } from "@/content/data";
+import { getStory, getTeam } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { Accent, Reveal, SectionHeading } from "@/components/ui";
 import { PersonCard } from "@/components/cards";
@@ -13,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const story = getStory();
+  const leadership = getTeam();
   return (
     <>
       <PageHero

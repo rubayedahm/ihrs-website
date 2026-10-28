@@ -1,0 +1,215 @@
+# Pages CMS configuration — https://pagescms.org
+# Sign in at https://app.pagescms.org with GitHub and open this repository.
+# Every save commits to `main`, and the site redeploys automatically (~2 minutes).
+
+media:
+  input: public/images
+  output: /images
+  categories: [image]
+  rename: safe
+
+content:
+  - name: events
+    label: Events
+    description: Campaigns, recruitment drives and society events. Newest appear first on the site.
+    type: collection
+    path: content/events
+    format: json
+    filename: "{year}-{month}-{day}-{primary}.json"
+    view:
+      fields: [title, date, campus]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Event title
+        type: string
+        required: true
+      - name: date
+        label: Date
+        type: date
+        required: true
+      - name: campus
+        label: Campus / location
+        description: Optional, e.g. Greenwich, Dagenham, Liverpool Street.
+        type: string
+      - name: image
+        label: Photo or poster
+        description: Square images (e.g. 1080×1080) look best.
+        type: image
+        required: true
+        options:
+          path: public/images/events
+      - name: summary
+        label: Short summary
+        description: One or two sentences shown on the event card.
+        type: text
+        required: true
+        options:
+          maxlength: 240
+
+  - name: journal
+    label: Journal (blog)
+    description: Articles and research. Use the editor toolbar for headings, links and images.
+    type: collection
+    path: content/journal
+    format: yaml-frontmatter
+    filename: "{primary}.md"
+    view:
+      fields: [title, date, author]
+      primary: title
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+      - name: author
+        label: Author
+        type: string
+      - name: image
+        label: Cover image
+        description: Optional. A wide image (e.g. 1360×760) works best.
+        type: image
+        options:
+          path: public/images/journal
+      - name: excerpt
+        label: Short description
+        description: Shown on article cards and in Google results. Leave empty to use the first lines of the article.
+        type: text
+        options:
+          maxlength: 320
+      - name: body
+        label: Article
+        type: rich-text
+        required: true
+        options:
+          format: html
+          path: public/images/journal
+
+  - name: team
+    label: Leadership team
+    description: Shown on the About page, in this order. Drag to reorder.
+    type: file
+    path: content/team.json
+    format: json
+    fields:
+      - name: members
+        label: Members
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.name} — {fields.role}"
+        fields:
+          - name: name
+            label: Name
+            type: string
+            required: true
+          - name: role
+            label: Role
+            type: string
+            required: true
+          - name: photo
+            label: Headshot
+            description: Optional square photo. Initials are shown if empty.
+            type: image
+            options:
+              path: public/images/team
+          - name: vacant
+            label: Position is vacant
+            type: boolean
+            default: false
+
+  - name: gallery
+    label: Gallery photos
+    description: Extra photos for the Gallery page. Event photos are added automatically.
+    type: file
+    path: content/gallery.json
+    format: json
+    fields:
+      - name: photos
+        label: Photos
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{fields.caption}"
+        fields:
+          - name: image
+            label: Photo
+            type: image
+            required: true
+            options:
+              path: public/images/gallery
+          - name: caption
+            label: Caption
+            type: string
+
+  - name: about
+    label: About page — our story
+    type: file
+    path: content/about.json
+    format: json
+    fields:
+      - name: heading
+        label: Heading
+        type: string
+        required: true
+      - name: paragraphs
+        label: Paragraphs
+        type: text
+        list: true
+
+  - name: settings
+    label: Site settings
+    description: Contact details and links used across the whole site.
+    type: file
+    path: content/settings.json
+    format: json
+    fields:
+      - name: email
+        label: Contact email
+        type: string
+        required: true
+      - name: phone
+        label: Phone
+        description: Leave empty to hide.
+        type: string
+      - name: location
+        label: Location
+        type: string
+      - name: charityNumber
+        label: Registered charity number
+        description: Leave empty unless IHRS is a registered charity.
+        type: string
+      - name: studentUnionJoin
+        label: Students' Union membership link
+        type: string
+      - name: committeeForm
+        label: Committee application form link
+        type: string
+      - name: donate
+        label: Donation page link
+        description: Stripe Payment Link, JustGiving, PayPal… Leave empty to show "Contact us" instead.
+        type: string
+      - name: social
+        label: Social media
+        description: Full profile URLs. Empty ones are hidden.
+        type: object
+        fields:
+          - { name: instagram, label: Instagram, type: string }
+          - { name: facebook, label: Facebook, type: string }
+          - { name: linkedin, label: LinkedIn, type: string }
+          - { name: x, label: X (Twitter), type: string }
+          - { name: youtube, label: YouTube, type: string }
+          - { name: whatsapp, label: WhatsApp (group/channel link), type: string }

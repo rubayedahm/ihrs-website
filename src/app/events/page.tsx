@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { events } from "@/content/data";
+import { getEvents } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { Accent, Reveal } from "@/components/ui";
 import { EventCard } from "@/components/cards";
@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default function EventsPage() {
+  const events = getEvents();
   const byYear = Object.entries(
     events.reduce<Record<string, typeof events>>((acc, e) => {
       const y = e.date.slice(0, 4);

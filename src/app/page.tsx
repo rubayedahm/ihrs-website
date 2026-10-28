@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Quote } from "lucide-react";
-import { events, gallery, journal, pillars, story, departments, structure } from "@/content/data";
+import { pillars, departments, structure } from "@/content/data";
+import { getEvents, getGallery, getJournal, getStory } from "@/lib/content";
 import { Accent, Button, Eyebrow, Reveal, SectionHeading } from "@/components/ui";
 import { EventCard, JournalCard } from "@/components/cards";
 import { Icon } from "@/components/Icon";
@@ -11,6 +12,10 @@ import { JoinBand } from "@/components/JoinBand";
 const marqueeWords = ["Equality", "Justice", "Accountability", "Legal awareness", "Dialogue", "Student empowerment", "Dignity", "Solidarity"];
 
 export default function Home() {
+  const events = getEvents();
+  const journal = getJournal();
+  const gallery = getGallery();
+  const story = getStory();
   const facts = [
     { value: 6, label: "Founders from different backgrounds, faiths and perspectives" },
     { value: structure[2].points.length, label: "Campus-based General Committees in London" },

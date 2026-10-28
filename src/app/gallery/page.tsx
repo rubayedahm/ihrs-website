@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { gallery } from "@/content/data";
+import { getGallery } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { Accent } from "@/components/ui";
 import { GalleryGrid } from "@/components/GalleryGrid";
@@ -23,7 +23,7 @@ export default function GalleryPage() {
       />
       <section className="py-20 md:py-28">
         <div className="container-x">
-          <GalleryGrid images={gallery} />
+          <GalleryGrid images={getGallery()} />
         </div>
       </section>
     </>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { journal } from "@/content/data";
+import { getJournal } from "@/lib/content";
 import { PageHero } from "@/components/PageHero";
 import { Accent, Reveal } from "@/components/ui";
 import { JournalCard } from "@/components/cards";
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 export default function JournalPage() {
-  const [featured, ...rest] = journal;
+  const [featured, ...rest] = getJournal();
   return (
     <>
       <PageHero

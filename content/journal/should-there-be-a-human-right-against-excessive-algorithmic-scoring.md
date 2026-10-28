@@ -1,3 +1,10 @@
+---
+title: "Should There Be a Human Right Against Excessive Algorithmic Scoring?"
+date: 2026-08-10
+author: ""
+image: ""
+excerpt: "Examining whether existing European and domestic human rights law provides adequate protection against algorithmic scoring in credit, employment, and university admissions I. Introduction Algorithmic scoring systems have become an infrastructure of modern life. From the determination of creditworthiness to the screenin"
+---
 <p><em>Examining whether existing European and domestic human rights law provides adequate protection against algorithmic scoring in credit, employment, and university admissions</em></p>
 <hr/>
 <h2>I. Introduction</h2>

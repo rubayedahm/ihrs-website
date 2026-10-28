@@ -1,0 +1,64 @@
+{
+  "members": [
+    {
+      "name": "Muhammad Bilal",
+      "role": "President",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Tufale Ahmed",
+      "role": "Vice President",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Ashima Saini",
+      "role": "Head of Operations",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Deeza Singh Dahal",
+      "role": "Treasurer",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Dihan Ahmed Mahi",
+      "role": "Head of Student Affairs",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Bhojraj Ghimire",
+      "role": "Head of Events",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Rahul",
+      "role": "General Secretary",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Nabin Singh Goyala",
+      "role": "Joint Secretary",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Rubayed Ahmed",
+      "role": "Head of IT",
+      "photo": "",
+      "vacant": false
+    },
+    {
+      "name": "Open position",
+      "role": "Student Ambassador",
+      "photo": "",
+      "vacant": true
+    }
+  ]
+}

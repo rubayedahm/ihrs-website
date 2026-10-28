@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { ArrowLeft } from "lucide-react";
-import { journal, journalImages } from "@/content/data";
+import { getJournal } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { site } from "@/lib/site";
 import { JournalCard } from "@/components/cards";
@@ -16,14 +14,14 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return journal.map((p) => ({ slug: p.slug }));
+  return getJournal().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = journal.find((p) => p.slug === slug);
+  const post = getJournal().find((p) => p.slug === slug);
   if (!post) return {};
-  const img = journalImages[slug];
+  const img = post.image;
   return {
     title: post.title,
     description: post.excerpt,
@@ -39,12 +37,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ArticlePage({ params }: Props) {
   const { slug } = await params;
+  const journal = getJournal();
   const post = journal.find((p) => p.slug === slug);
   if (!post) notFound();
 
-  // Article bodies are stored as trusted HTML files in src/content/journal.
-  const html = await readFile(path.join(process.cwd(), "src/content/journal", `${slug}.html`), "utf8");
-  const img = journalImages[slug];
+  // Article bodies are HTML written in the CMS rich-text editor (trusted editors only).
+  const { html, image: img } = post;
   const others = journal.filter((p) => p.slug !== slug).slice(0, 2);
   const minutes = Math.max(1, Math.round(html.replace(/<[^>]+>/g, " ").split(/\s+/).length / 220));
   const url = `${site.url}/journal/${slug}/`;
@@ -58,6 +56,7 @@ export default async function ArticlePage({ params }: Props) {
           </Link>
           <p className="mt-8 text-xs font-bold uppercase tracking-[0.2em] text-gold-500">
             <time dateTime={post.date}>{formatDate(post.date)}</time> · {minutes} min read
+            {post.author && <> · By {post.author}</>}
           </p>
           <h1 className="mt-4 text-3xl font-extrabold leading-tight tracking-tight text-balance text-white md:text-5xl">
             {post.title}
