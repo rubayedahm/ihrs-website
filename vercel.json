@@ -1,0 +1,10 @@
+{
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/about-us", "destination": "/about/", "permanent": true },
+    { "source": "/journals", "destination": "/journal/", "permanent": true },
+    { "source": "/landing-page", "destination": "/", "permanent": true },
+    { "source": "/donations", "destination": "/donate/", "permanent": true },
+    { "source": "/:y(\\d{4})/:m(\\d{2})/:d(\\d{2})/:slug", "destination": "/journal/:slug/", "permanent": true }
+  ]
+}

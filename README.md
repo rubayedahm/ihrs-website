@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# IHRS website
 
-## Getting Started
+Website for the **International Human Rights Society** — built with Next.js 15, React 19, TypeScript, Tailwind CSS 4 and Motion.
+It is exported as a fully static site (fast, secure, and cheap or free to host).
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build      # static site written to ./out
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| What | Where |
+| --- | --- |
+| Email, phone, location, social links, donate link, charity no. | `src/lib/site.ts` |
+| Story, values, team, events, structure, departments | `src/content/data.ts` |
+| Journal articles | `src/content/journal/<slug>.html` + `index.json` |
+| Images | `public/images/…` (team headshots: add `photo` to a person in `data.ts`) |
+| Brand colours & fonts | `src/app/globals.css` (`@theme`) and `src/app/layout.tsx` |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Add an event:** drop the image in `public/images/events/` and add an entry to `events` in `data.ts`.
+**Add an article:** add `src/content/journal/my-article.html` and an entry in `index.json` (`slug`, `title`, `date`, `excerpt`).
 
-## Learn More
+## Contact form
 
-To learn more about Next.js, take a look at the following resources:
+Create a free form at [Formspree](https://formspree.io) (or Basin/Getform) and set
+`NEXT_PUBLIC_FORM_ENDPOINT` in your host's environment variables. Without it the form opens the visitor's email app.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deploy & domain
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Vercel (recommended):** import the repo at vercel.com → Deploy. Then *Settings → Domains* → add `ihrsglobal.org`
+and follow the DNS instructions. `vercel.json` redirects old WordPress URLs.
 
-## Deploy on Vercel
+**Netlify / Cloudflare Pages:** build command `npm run build`, output directory `out`. `public/_redirects` handles old URLs.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Update `site.url` in `src/lib/site.ts` if the domain changes (used for SEO, sitemap and sharing).
