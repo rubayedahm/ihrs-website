@@ -8,8 +8,8 @@ export const site = {
   tagline: "Advancing human rights through knowledge, action, and fearless legal advocacy.",
   description:
     "The International Human Rights Society (IHRS) is a student-led human rights organisation in London, UK — advancing legal awareness, critical dialogue and real accountability.",
-  // TODO: change to your live domain once it is connected.
-  url: "https://ihrsglobal.org",
+  // Public address of the site (no trailing slash). Set NEXT_PUBLIC_SITE_URL at build time.
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://ihrsglobal.org",
   location: "Dagenham, London, United Kingdom",
   // TODO: replace with the official IHRS inbox.
   email: "info@ihrsglobal.org",

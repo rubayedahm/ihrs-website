@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { CheckCircle2, Loader2, Send } from "lucide-react";
 import { site } from "@/lib/site";
@@ -87,7 +88,7 @@ export function ContactForm() {
         <input id="consent" name="consent" type="checkbox" required className="mt-1 size-4 accent-navy-900" />
         <label htmlFor="consent" className="text-sm text-muted">
           I agree to IHRS using these details to respond to my enquiry, as set out in the{" "}
-          <a href="/privacy/" className="font-semibold text-navy-700 underline">privacy notice</a>.
+          <Link href="/privacy/" className="font-semibold text-navy-700 underline">privacy notice</Link>.
         </label>
       </div>
       <div className="sm:col-span-2">
