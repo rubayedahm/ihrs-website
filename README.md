@@ -44,9 +44,24 @@ Elsewhere, set `NEXT_PUBLIC_FORM_ENDPOINT`. Without it the form opens the visito
 
 ## Deploy & domain
 
-**Vercel (recommended):** import the repo at vercel.com → Deploy. Then *Settings → Domains* → add `ihrsglobal.org`
-and follow the DNS instructions. `vercel.json` redirects old WordPress URLs.
+The site deploys to **GitHub Pages** automatically on every push to `main` (`.github/workflows/deploy.yml`).
 
-**Netlify / Cloudflare Pages:** build command `npm run build`, output directory `out`. `public/_redirects` handles old URLs.
+**Custom domain (ihrsglobal.org):**
+1. At your domain registrar, set these DNS records (remove any old A/AAAA/CNAME records for `@` and `www`; leave MX/email records alone):
 
-Update `site.url` in `src/lib/site.ts` if the domain changes (used for SEO, sitemap and sharing).
+   | Type | Name | Value |
+   | --- | --- | --- |
+   | A | @ | 185.199.108.153 |
+   | A | @ | 185.199.109.153 |
+   | A | @ | 185.199.110.153 |
+   | A | @ | 185.199.111.153 |
+   | AAAA | @ | 2606:50c0:8000::153 |
+   | AAAA | @ | 2606:50c0:8001::153 |
+   | AAAA | @ | 2606:50c0:8002::153 |
+   | AAAA | @ | 2606:50c0:8003::153 |
+   | CNAME | www | rubayedahm.github.io |
+
+2. In the repo: *Settings → Pages → Custom domain* → `ihrsglobal.org` → Save. Tick **Enforce HTTPS** once it becomes available.
+3. Re-run the latest *Deploy to GitHub Pages* workflow (*Actions* tab) so links, sitemap and sharing previews use the new domain.
+
+Old WordPress URLs (e.g. `/about-us/`, `/journals/`, dated article links) redirect via small pages in `public/`.

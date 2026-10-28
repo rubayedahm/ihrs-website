@@ -1,9 +1,0 @@
-# Old WordPress URLs -> new pages (Netlify / Cloudflare Pages)
-/about-us/*      /about/       301
-/about-us        /about/       301
-/journals/*      /journal/     301
-/journals        /journal/     301
-/landing-page/*  /             301
-/donations/*     /donate/      301
-/2026/04/02/equality-vulnerability-and-informal-labour-rethinking-workplace-rights-in-the-united-kingdom/*  /journal/equality-vulnerability-and-informal-labour-rethinking-workplace-rights-in-the-united-kingdom/  301
-/2026/08/10/should-there-be-a-human-right-against-excessive-algorithmic-scoring/*  /journal/should-there-be-a-human-right-against-excessive-algorithmic-scoring/  301
