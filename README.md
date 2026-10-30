@@ -61,7 +61,7 @@ The site deploys to **GitHub Pages** automatically on every push to `main` (`.gi
    | AAAA | @ | 2606:50c0:8003::153 |
    | CNAME | www | rubayedahm.github.io |
 
-2. In the repo: *Settings → Pages → Custom domain* → `ihrsglobal.org` → Save. Tick **Enforce HTTPS** once it becomes available.
+2. In the repo: *Settings → Pages → Source* must be **GitHub Actions** (not "Deploy from a branch", which publishes the README instead). Then *Settings → Pages → Custom domain* → `ihrsglobal.org` → Save. Tick **Enforce HTTPS** once it becomes available.
 3. Re-run the latest *Deploy to GitHub Pages* workflow (*Actions* tab) so links, sitemap and sharing previews use the new domain.
 
 Old WordPress URLs (e.g. `/about-us/`, `/journals/`, dated article links) redirect via small pages in `public/`.
